@@ -1,5 +1,7 @@
 # Covid19Tracker
 
+Proje yayındadır linkten ulaşabilirsiniz [Covid19Tracker](https://csegcovid19tracker.netlify.app/)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
 
 ## Development server
