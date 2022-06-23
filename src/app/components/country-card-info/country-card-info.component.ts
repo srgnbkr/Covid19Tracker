@@ -1,7 +1,9 @@
+import { CountryDataService } from './../../services/country-data.service';
 import { CountryData } from './../../models/countryData';
 import { SummaryData } from './../../models/summaryData';
 import { GlobalDataService } from './../../services/global-data.service';
 import { Component, OnInit } from '@angular/core';
+import { CountryDetailData } from 'src/app/models/countryDetailData';
 
 @Component({
   selector: 'app-country-card-info',
@@ -9,19 +11,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./country-card-info.component.scss'],
 })
 export class CountryCardInfoComponent implements OnInit {
-  public basicData;
+  countryDetails: CountryDetailData;
+  basicData;
+  lastDayData;
   summaryData: SummaryData;
   dataLoaded = false;
+  lastDays: Array<Date>;
+
   selectedCountry: CountryData;
   highlyConfirmedData: Array<CountryData>;
-  chartLabel: any;
-  chartConfirmedData: any;
+  chartLabel: Array<string>;
+
+  chartConfirmedData: Array<number>;
 
   constructor(private dataService: GlobalDataService) {}
 
   ngOnInit(): void {
     this.getGlobalData();
-    this.chartShows();
   }
 
   getGlobalData() {
@@ -30,11 +36,34 @@ export class CountryCardInfoComponent implements OnInit {
       this.dataLoaded = true;
       this.getSortedData();
       //Chartta neden gösteremiyorum?Help nereye yazmalı?
-      this.chartLabel = this.highlyConfirmedData.map((a) => a.CountryCode).filter((value, index, self) => self.indexOf(value) === index);
-      this.chartConfirmedData = this.highlyConfirmedData.map((a) => a.TotalConfirmed).filter((value, index, self) => self.indexOf(value) === index);
-      //TODO:Tekrar gözden geçir. Çalışıyor ama chartta neden görünmüyor...
-      console.log(this.chartLabel);
-      console.log(this.chartConfirmedData);
+
+      this.chartLabel = this.highlyConfirmedData
+        .map((a) => a.Country)
+        .filter((value, index, self) => self.indexOf(value) === index);
+      this.chartConfirmedData = this.highlyConfirmedData
+        .map((a) => a.TotalConfirmed)
+        .filter((value, index, self) => self.indexOf(value) === index);
+      //TODO:Çözüldü!!
+      //console.log(this.chartLabel);
+      //console.log(this.chartConfirmedData);
+      this.basicData = {
+        labels: this.chartLabel,
+        datasets: [
+          {
+            label: 'En Çok Vaka Görülen 10 Ülke',
+            backgroundColor: [
+              '#EC407A',
+              '#AB47BC',
+              '#42A5F5',
+              '#7E57C2',
+              '#66BB6A',
+              '#FFCA28',
+              '#26A69A',
+            ],
+            data: this.chartConfirmedData,
+          },
+        ],
+      };
     });
   }
 
@@ -45,16 +74,5 @@ export class CountryCardInfoComponent implements OnInit {
       .slice(0, 10);
   }
 
-  chartShows() {
-    this.basicData = {
-      labels: [this.chartLabel],
-      datasets: [
-        {
-          label: 'En Çok Vaka Görülen 10 Ülke',
-          backgroundColor: '#42A5F5',
-          data: [this.chartConfirmedData],
-        },
-      ],
-    };
-  }
+
 }
