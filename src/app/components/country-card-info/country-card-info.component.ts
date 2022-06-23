@@ -9,41 +9,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./country-card-info.component.scss'],
 })
 export class CountryCardInfoComponent implements OnInit {
-  basicData: any;
-  summaryData!: SummaryData;
+  public basicData;
+  summaryData: SummaryData;
   dataLoaded = false;
-  selectedCountry!: CountryData;
-
-  countryLabel: any;
+  selectedCountry: CountryData;
+  highlyConfirmedData: Array<CountryData>;
+  chartLabel: any;
+  chartConfirmedData: any;
 
   constructor(private dataService: GlobalDataService) {}
 
   ngOnInit(): void {
-
-
-    this.basicData = {
-      labels: ['Sergen'],
-      datasets: [
-        {
-          label: 'Yeni Ölümler',
-          backgroundColor: '#42A5F5',
-          data: [this.selectedCountry?.NewConfirmed],
-        },
-      ],
-    };
-
     this.getGlobalData();
-
-
+    this.chartShows();
   }
 
   getGlobalData() {
     this.dataService.getGlobalData().subscribe((response) => {
       this.summaryData = response;
       this.dataLoaded = true;
-      console.log(this.countryLabel)
+      this.getSortedData();
+      //Chartta neden gösteremiyorum?Help nereye yazmalı?
+      this.chartLabel = this.highlyConfirmedData.map((a) => a.CountryCode).filter((value, index, self) => self.indexOf(value) === index);
+      this.chartConfirmedData = this.highlyConfirmedData.map((a) => a.TotalConfirmed).filter((value, index, self) => self.indexOf(value) === index);
+      //TODO:Tekrar gözden geçir. Çalışıyor ama chartta neden görünmüyor...
+      console.log(this.chartLabel);
+      console.log(this.chartConfirmedData);
     });
+  }
 
+  getSortedData() {
+    let data = JSON.parse(JSON.stringify(this.summaryData.Countries));
+    this.highlyConfirmedData = data
+      .sort((a, b) => b.TotalConfirmed - a.TotalConfirmed)
+      .slice(0, 10);
+  }
 
+  chartShows() {
+    this.basicData = {
+      labels: [this.chartLabel],
+      datasets: [
+        {
+          label: 'En Çok Vaka Görülen 10 Ülke',
+          backgroundColor: '#42A5F5',
+          data: [this.chartConfirmedData],
+        },
+      ],
+    };
   }
 }

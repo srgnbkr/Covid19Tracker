@@ -17,23 +17,8 @@ export class ChartInfoComponent implements OnInit {
   constructor(){}
 
   ngOnInit() {
-    this.basicData = {
-      labels: ['A','B','C'],
-      datasets: [
-          {
-              data: [this.number, 50, 100],
-              backgroundColor: [
-                  "#42A5F5",
-                  "#66BB6A",
-                  "#FFA726"
-              ],
-              hoverBackgroundColor: [
-                  "#64B5F6",
-                  "#81C784",
-                  "#FFB74D"
-              ]
-          }
-      ]
+
+
   }
 
 
@@ -45,6 +30,6 @@ export class ChartInfoComponent implements OnInit {
 
 
 }
-}
+
 
 
