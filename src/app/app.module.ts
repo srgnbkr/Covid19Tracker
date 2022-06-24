@@ -1,19 +1,21 @@
+import { HttpErrorsInterceptor } from './interceptors/http-errors.interceptor';
+import { HttpHeadersInterceptor } from './interceptors/http-headers.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Todo:Modüller şişmeye başladı... Help Neye göre kime göre...
-import { HttpClientModule } from '@angular/common/http';
-import {TableModule} from 'primeng/table';
-import {PaginatorModule} from 'primeng/paginator';
-import {MenubarModule} from 'primeng/menubar';
-import {InputTextModule} from 'primeng/inputtext';
-import {DropdownModule} from 'primeng/dropdown';
-import {ButtonModule} from 'primeng/button';
-import {FieldsetModule} from 'primeng/fieldset';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import {ChartModule} from 'primeng/chart';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+import { MenubarModule } from 'primeng/menubar';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+import { FieldsetModule } from 'primeng/fieldset';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ChartModule } from 'primeng/chart';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +28,7 @@ import { CountryListComponent } from './components/country-list/country-list.com
 import { FilterPipe } from './pipes/filter.pipe';
 import { CountryCardInfoComponent } from './components/country-card-info/country-card-info.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { CovidNewsComponent } from './components/covid-news/covid-news.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     CountryListComponent,
     FilterPipe,
     CountryCardInfoComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    CovidNewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,13 +59,20 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     ButtonModule,
     FieldsetModule,
     ProgressSpinnerModule,
-    ChartModule
-
-
-
-
+    ChartModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpHeadersInterceptor,
+      multi: true,
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:HttpErrorsInterceptor,
+      multi:true
+    }
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
