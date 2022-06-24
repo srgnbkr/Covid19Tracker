@@ -25,6 +25,7 @@ import { ChartInfoComponent } from './components/chart-info/chart-info.component
 import { CountryListComponent } from './components/country-list/country-list.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { CountryCardInfoComponent } from './components/country-card-info/country-card-info.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CountryCardInfoComponent } from './components/country-card-info/country
     ChartInfoComponent,
     CountryListComponent,
     FilterPipe,
-    CountryCardInfoComponent
+    CountryCardInfoComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
