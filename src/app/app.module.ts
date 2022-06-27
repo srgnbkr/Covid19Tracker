@@ -1,10 +1,11 @@
+import { HttpHeaderInterceptor } from './interceptors/http-header.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 //Todo:Modüller şişmeye başladı... Help Neye göre kime göre...
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {TableModule} from 'primeng/table';
 import {PaginatorModule} from 'primeng/paginator';
 import {MenubarModule} from 'primeng/menubar';
@@ -14,6 +15,7 @@ import {ButtonModule} from 'primeng/button';
 import {FieldsetModule} from 'primeng/fieldset';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ChartModule} from 'primeng/chart';
+import {CarouselModule} from 'primeng/carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +28,7 @@ import { CountryListComponent } from './components/country-list/country-list.com
 import { FilterPipe } from './pipes/filter.pipe';
 import { CountryCardInfoComponent } from './components/country-card-info/country-card-info.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { NewsInfoComponent } from './components/news-info/news-info.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     CountryListComponent,
     FilterPipe,
     CountryCardInfoComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    NewsInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -55,13 +59,20 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     ButtonModule,
     FieldsetModule,
     ProgressSpinnerModule,
-    ChartModule
+    ChartModule,
+    CarouselModule
 
 
 
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:HttpHeaderInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

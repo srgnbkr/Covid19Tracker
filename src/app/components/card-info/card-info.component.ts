@@ -1,3 +1,5 @@
+import { CovidNewsData } from './../../models/covidNewsData';
+import { CovidNewsService } from './../../services/covid-news.service';
 import { CountryData } from './../../models/countryData';
 import { SummaryData } from './../../models/summaryData';
 import { GlobalDataService } from './../../services/global-data.service';
@@ -12,12 +14,14 @@ export class CardInfoComponent implements OnInit {
 
   summaryData!:SummaryData;
   dataLoaded = false;
+  newsData:CovidNewsData[];
 
 
   constructor(private dataService:GlobalDataService) { }
-
+e:CovidNewsService
   ngOnInit(): void {
     this.getGlobalData();
+
   }
 
   getGlobalData() {
@@ -27,5 +31,10 @@ export class CardInfoComponent implements OnInit {
 
     });
 
+
+
 }
+
+
+
 }

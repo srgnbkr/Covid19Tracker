@@ -24,8 +24,9 @@ export class NavbarComponent implements OnInit {
         routerLink: ['/ülkeler'],
       },
       {
-        label: 'Günlük Veriler',
-        icon: 'pi pi-calendar',
+        label: 'Covid19 Haberleri',
+        icon: 'pi pi-globe',
+        routerLink:['haberler']
       },
     ];
   }
