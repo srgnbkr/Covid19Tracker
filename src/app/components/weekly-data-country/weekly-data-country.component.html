@@ -1,0 +1,93 @@
+<p-fieldset class="surface-ground" legend="Türkiye İçin Son 7 Günlük Covid19 Verileri" [toggleable]="true">
+
+  <div class="flex justify-content-evenly flex-wrap">
+    <p-card header="Son 7 Günlük Vaka Artışı" [style]="{ width: '360px' }" styleClass="p-card-shadow">
+      <div class="card">
+        <div class="flex justify-content-between flex-wrap card-container purple-container">
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-purple-700 font-bold text-white border-round m-2">
+            {{ nowDate }}
+          </div>
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-purple-700 font-bold text-white border-round m-2">
+            {{ nowConfirmed | number }}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flex justify-content-between flex-wrap card-container purple-container">
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-purple-700 font-bold text-white border-round m-2">
+            {{ lastWeekDate }}
+          </div>
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-purple-700 font-bold text-white border-round m-2">
+            {{ sevenDaysAgoCofirmed | number }}
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="card card-result">
+        <div class="flex justify-content-between flex-wrap card-container purple-container">
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-purple-700 font-bold text-white border-round m-2">
+            Fark
+          </div>
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-purple-700 font-bold text-white border-round m-2">
+            {{ nowConfirmed - sevenDaysAgoCofirmed | number }}
+          </div>
+        </div>
+      </div>
+
+
+
+    </p-card>
+    <p-card header="Son 7 Günlük Ölüm Artışı" [style]="{ width: '360px' }" styleClass="p-card-shadow">
+      <div class="card">
+        <div class="flex justify-content-between flex-wrap card-container purple-container">
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-red-700 font-bold text-white border-round m-2">
+            {{ nowDate }}
+          </div>
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-red-700 font-bold text-white border-round m-2">
+            {{ nowDeaths | number }}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flex justify-content-between flex-wrap card-container purple-container">
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-red-700 font-bold text-white border-round m-2">
+            {{ lastWeekDate }}
+          </div>
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-red-700 font-bold text-white border-round m-2">
+            {{ sevenDaysAgoDeath | number }}
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="card card-result">
+        <div class="flex justify-content-between flex-wrap card-container purple-container">
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-red-700 font-bold text-white border-round m-2">
+            Fark
+          </div>
+          <div
+            class="flex align-items-center justify-content-center w-8rem h-2rem bg-red-700 font-bold text-white border-round m-2">
+            {{ nowDeaths - sevenDaysAgoDeath | number }}
+          </div>
+        </div>
+      </div>
+
+
+
+    </p-card>
+  </div>
+
+
+</p-fieldset>

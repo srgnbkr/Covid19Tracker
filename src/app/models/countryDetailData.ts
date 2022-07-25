@@ -1,11 +1,9 @@
 export interface CountryDetailData {
-  Country:string;
+  Country: string;
   CountryCode: string;
   Confirmed: number;
   Deaths: number;
   Recovered: number;
   Active: number;
-  Date: Date;
-
-
+  Date: string;
 }

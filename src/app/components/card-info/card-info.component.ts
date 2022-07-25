@@ -1,5 +1,4 @@
-import { CovidNewsData } from './../../models/covidNewsData';
-import { CovidNewsService } from './../../services/covid-news.service';
+
 import { CountryData } from './../../models/countryData';
 import { SummaryData } from './../../models/summaryData';
 import { GlobalDataService } from './../../services/global-data.service';
@@ -8,33 +7,23 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-card-info',
   templateUrl: './card-info.component.html',
-  styleUrls: ['./card-info.component.scss']
+  styleUrls: ['./card-info.component.scss'],
 })
 export class CardInfoComponent implements OnInit {
-
-  summaryData!:SummaryData;
+  summaryData!: SummaryData;
   dataLoaded = false;
-  newsData:CovidNewsData[];
 
 
-  constructor(private dataService:GlobalDataService) { }
-e:CovidNewsService
+  constructor(private dataService: GlobalDataService) {}
+
   ngOnInit(): void {
     this.getGlobalData();
-
   }
 
   getGlobalData() {
     this.dataService.getGlobalData().subscribe((response) => {
       this.summaryData = response;
-      this.dataLoaded=true;
-
+      this.dataLoaded = true;
     });
-
-
-
-}
-
-
-
+  }
 }

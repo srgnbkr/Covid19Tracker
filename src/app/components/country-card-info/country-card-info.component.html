@@ -5,38 +5,35 @@
 >
 </p-progressSpinner>
 
-
-
-<div *ngIf="dataLoaded == true" class="surface-ground px-4 py-5 md:px-6 lg:px-8">
-
+<div
+  *ngIf="dataLoaded == true"
+  class="surface-ground px-4 py-5 md:px-6 lg:px-8"
+>
   <div div class="p-fluid grid">
     <div class="field col-12 md:col-4 mx-auto">
       <span class="p-float-label">
-
         <p-dropdown
-        inputId="dropdown"
-        filterBy="Country"
-        [filter]="true"
-        [autoDisplayFirst]="true"
-        [(ngModel)]="selectedCountry"
-        [options]="summaryData.Countries"
-        optionLabel="Country"
-
-
-      ></p-dropdown>
-
+          inputId="dropdown"
+          filterBy="Country"
+          [filter]="true"
+          [autoDisplayFirst]="true"
+          [(ngModel)]="selectedCountry"
+          [options]="summaryData.Countries"
+          optionLabel="Country"
+        ></p-dropdown>
       </span>
     </div>
   </div>
 
-
   <div class="grid">
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 md:col-6 lg:col-6">
       <div class="surface-card shadow-2 p-3 border-round">
         <div class="flex justify-content-between mb-3">
           <div>
             <span class="block text-500 font-medium mb-3">Toplam Ölüm</span>
-            <div class="text-900 font-medium text-2xl">{{selectedCountry?.TotalDeaths| number}}</div>
+            <div class="text-900 font-medium text-2xl">
+              {{ selectedCountry?.TotalDeaths | number }}
+            </div>
           </div>
           <div
             class="flex align-items-center justify-content-center bg-red-700 border-round"
@@ -47,18 +44,20 @@
         </div>
         <span class="text-500">Son Güncelleme Tarihi</span>
         <div class="mt-2">
-          <span class="text-green-600 text-xl">{{summaryData.Date | date}} </span>
+          <span class="text-green-600 text-xl"
+            >{{ summaryData.Date | date }}
+          </span>
         </div>
-
-
       </div>
     </div>
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 md:col-6 lg:col-6">
       <div class="surface-card shadow-2 p-3 border-round">
         <div class="flex justify-content-between mb-3">
           <div>
             <span class="block text-500 font-medium mb-3">Toplam Vaka</span>
-            <div class="text-900 font-medium text-2xl">{{selectedCountry?.TotalConfirmed| number}}</div>
+            <div class="text-900 font-medium text-2xl">
+              {{ selectedCountry?.TotalConfirmed | number }}
+            </div>
           </div>
           <div
             class="flex align-items-center justify-content-center bg-purple-600 border-round"
@@ -69,16 +68,21 @@
         </div>
         <span class="text-500">Son Güncelleme Tarihi</span>
         <div class="mt-2">
-          <span class="text-green-600 text-xl">{{summaryData.Date | date}} </span>
+          <span class="text-green-600 text-xl"
+            >{{ summaryData.Date | date }}
+          </span>
         </div>
       </div>
     </div>
-    <div class="col-12 md:col-6 lg:col-3">
+
+    <!-- <div class="col-12 md:col-6 lg:col-3">
       <div class="surface-card shadow-2 p-3 border-round">
         <div class="flex justify-content-between mb-3">
           <div>
             <span class="block text-500 font-medium mb-3">Yeni Vaka</span>
-            <div class="text-900 font-medium text-2xl">{{selectedCountry?.NewConfirmed| number}}</div>
+            <div class="text-900 font-medium text-2xl">
+              {{ selectedCountry?.NewConfirmed | number }}
+            </div>
           </div>
           <div
             class="flex align-items-center justify-content-center bg-blue-500 border-round"
@@ -89,7 +93,9 @@
         </div>
         <span class="text-500">Son Güncelleme Tarihi</span>
         <div class="mt-2">
-          <span class="text-green-600 text-xl">{{summaryData.Date | date}} </span>
+          <span class="text-green-600 text-xl"
+            >{{ summaryData.Date | date }}
+          </span>
         </div>
       </div>
     </div>
@@ -98,7 +104,9 @@
         <div class="flex justify-content-between mb-3">
           <div>
             <span class="block text-500 font-medium mb-3">Yeni Ölüm</span>
-            <div class="text-900 font-medium text-2xl">{{selectedCountry?.NewDeaths| number}}</div>
+            <div class="text-900 font-medium text-2xl">
+              {{ selectedCountry?.NewDeaths | number }}
+            </div>
           </div>
           <div
             class="flex align-items-center justify-content-center bg-orange-500 border-round"
@@ -109,14 +117,21 @@
         </div>
         <span class="text-500">Son Güncelleme Tarihi</span>
         <div class="mt-2">
-          <span class="text-green-600 text-xl">{{summaryData.Date | date}} </span>
+          <span class="text-green-600 text-xl"
+            >{{ summaryData.Date | date }}
+          </span>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="col-12">
-      <p-chart  type="bar" [data]="basicData"></p-chart>
+    <div class="col-6">
+      <app-turkey-data></app-turkey-data>
     </div>
-
+    <div class="col-6">
+      <p-chart type="bar" [data]="basicData"></p-chart>
+    </div>
+    <div class="col 12">
+      <app-weekly-data-country></app-weekly-data-country>
+    </div>
   </div>
 </div>

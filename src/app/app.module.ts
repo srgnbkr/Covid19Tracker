@@ -16,6 +16,7 @@ import {FieldsetModule} from 'primeng/fieldset';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ChartModule} from 'primeng/chart';
 import {CarouselModule} from 'primeng/carousel';
+import {CardModule} from 'primeng/card'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +29,10 @@ import { CountryListComponent } from './components/country-list/country-list.com
 import { FilterPipe } from './pipes/filter.pipe';
 import { CountryCardInfoComponent } from './components/country-card-info/country-card-info.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
-import { NewsInfoComponent } from './components/news-info/news-info.component';
+import { TurkeyDataComponent } from './components/turkey-data/turkey-data.component';
+import { HeroBannerComponent } from './components/hero-banner/hero-banner.component';
+import { WeeklyDataCountryComponent } from './components/weekly-data-country/weekly-data-country.component';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import { NewsInfoComponent } from './components/news-info/news-info.component';
     FilterPipe,
     CountryCardInfoComponent,
     NotfoundComponent,
-    NewsInfoComponent
+    TurkeyDataComponent,
+    HeroBannerComponent,
+    WeeklyDataCountryComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -60,8 +67,8 @@ import { NewsInfoComponent } from './components/news-info/news-info.component';
     FieldsetModule,
     ProgressSpinnerModule,
     ChartModule,
-    CarouselModule
-
+    CarouselModule,
+    CardModule
 
 
 

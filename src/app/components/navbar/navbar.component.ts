@@ -16,7 +16,9 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Anasayfa',
         icon: 'pi pi-home',
+
         routerLink: ['/'],
+
       },
       {
         label: 'Ülkeler',

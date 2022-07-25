@@ -13,7 +13,7 @@ import { CountryDetailData } from 'src/app/models/countryDetailData';
 export class CountryCardInfoComponent implements OnInit {
   countryDetails: CountryDetailData;
   basicData;
-  lastDayData;
+  last10DayData;
   summaryData: SummaryData;
   dataLoaded = false;
   lastDays: Array<Date>;
@@ -35,7 +35,7 @@ export class CountryCardInfoComponent implements OnInit {
       this.summaryData = response;
       this.dataLoaded = true;
       this.getSortedData();
-      //Chartta neden gösteremiyorum?Help nereye yazmalı?
+
 
       this.chartLabel = this.highlyConfirmedData
         .map((a) => a.Country)
@@ -43,9 +43,7 @@ export class CountryCardInfoComponent implements OnInit {
       this.chartConfirmedData = this.highlyConfirmedData
         .map((a) => a.TotalConfirmed)
         .filter((value, index, self) => self.indexOf(value) === index);
-      //TODO:Çözüldü!!
-      //console.log(this.chartLabel);
-      //console.log(this.chartConfirmedData);
+
       this.basicData = {
         labels: this.chartLabel,
         datasets: [
@@ -72,7 +70,6 @@ export class CountryCardInfoComponent implements OnInit {
     this.highlyConfirmedData = data
       .sort((a, b) => b.TotalConfirmed - a.TotalConfirmed)
       .slice(0, 10);
+
   }
-
-
 }
